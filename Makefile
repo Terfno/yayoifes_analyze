@@ -1,3 +1,6 @@
+init:
+	go install
+
 build:
 	docker build -t go_yf:latest .
 	docker images
