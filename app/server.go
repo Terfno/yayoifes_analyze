@@ -2,15 +2,14 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"net/http"
+
+	"github.com/Terfno/yayoifes_analyze/app/handler"
 )
 
 func main() {
 	r := gin.Default()
 
-	r.GET("/hello", func(c *gin.Context) {
-		c.String(http.StatusOK, "Hello world\n")
-	})
+	r.GET("/hello", handler.Hello)
 
 	r.Run(":8080")
 }
