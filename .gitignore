@@ -46,5 +46,5 @@ _testmain.go
 /test/times.out
 
 # mysql data
-./database/data/*
-!./database/data/yayoifes_analyze_db
+/database/data/*
+!/database/data/yayoifes_analyze_db
