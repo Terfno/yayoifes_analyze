@@ -3,6 +3,7 @@ package infra
 import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"log"
 )
 
 func Connect() *gorm.DB {
