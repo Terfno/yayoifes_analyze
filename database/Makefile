@@ -24,7 +24,7 @@ mysql:
 	mysql -u root -h $(DB_HOST) -P $(DB_PORT) --protocol tcp -p $(DB_NAME)
 
 migrate/init:
-	mysql -u root -h 127.0.0.1 -P $(DB_PORT) --protocol tcp -e "create database \`$(DB_NAME)\`" -p$(DB_PASSWORD)
+	mysql -u root -h $(DB_HOST) -P $(DB_PORT) --protocol tcp -e "create database \`$(DB_NAME)\`" -p$(DB_PASSWORD)
 
 migrate/new:
 	@migrate create -dir migrations -ext sql -seq "$(NAME)"
@@ -42,4 +42,4 @@ migrate_down:
 	@migrate -path migrations -database "$(DATASOURCE)$(DB_NAME)" down 1
 
 migrate/drop:
-	mysql -u root -h $(DB_HOST) --protocol tcp -e "drop database \`$(DB_NAME)\`" -p$(DB_PASSWORD)
+	mysql -u root -h $(DB_HOST) -P $(DB_PORT) --protocol tcp -e "drop database \`$(DB_NAME)\`" -p$(DB_PASSWORD)
