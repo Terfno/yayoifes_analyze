@@ -15,10 +15,6 @@ func main() {
 	r := gin.Default()
 	r.HTMLRender = loadTemplates("./templates")
 
-	// try
-	r.GET("/hello", handler.Hello)
-	r.GET("/dbtest", handler.DBtest)
-
 	// ui
 	r.GET("/",func(c *gin.Context){
 		c.HTML(http.StatusOK, "index.html", gin.H{})
