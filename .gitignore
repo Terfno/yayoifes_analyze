@@ -47,4 +47,3 @@ _testmain.go
 
 # mysql data
 /database/data/*
-!/database/data/yayoifes_analyze_db
