@@ -26,6 +26,7 @@ func main() {
 	{
 		apiRouter.GET("/nov", handler.GetNumberOfVisitor)
 		apiRouter.GET("/novperhour", handler.GetNumberOfVisitorPerHour)
+		apiRouter.POST("/newrecep/", handler.NewReception)
 	}
 
 	r.Run(":8080")

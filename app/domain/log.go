@@ -13,6 +13,15 @@ type Log struct {
 	Timing time.Time `json:datetime`
 }
 
+func NewReception(age int, sex string) error {
+	newlog := Log{}
+	newlog.Age = age
+	newlog.Sex = sex
+	newlog.Timing = time.Now()
+
+	return infra.Connect().Create(&newlog).Error
+}
+
 func GetNumberOfVisitor() ([]*Log, error) {
 	var l []*Log
 
@@ -42,11 +51,9 @@ func GetNumberOfVisitorByHour(min, max int) ([]*Log, error) {
 }
 
 func Read24() ([]*Log, error) {
-	db := infra.Connect()
-	defer db.Close()
-
 	var l []*Log
-	err := db.Find(&l, "Timing >= ? - INTERVAL 1 DAY", time.Now()).Error
+
+	err := infra.Connect().Find(&l, "Timing >= ? - INTERVAL 1 DAY", time.Now()).Error
 	if err != nil {
 		return nil, err
 	}

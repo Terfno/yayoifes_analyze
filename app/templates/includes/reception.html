@@ -1,7 +1,67 @@
 {{ define "content" }}
 
 <div class="container">
-  <h2>for Reception</h2>
+  <!-- Material form register -->
+  <div class="card">
+    <h5 class="card-header info-color white-text text-center py-4">
+      <strong>Sign up</strong>
+    </h5>
+    <div class="card-body px-lg-5 pt-0">
+      <!-- Form -->
+      <form
+        method="POST"
+        action="./api/newrecep"
+        id="formSubmit"
+        style="color: #757575;"
+        action="#!"
+      >
+        <div class="md-form">
+          <div>
+            <input
+              type="search"
+              id="form-age"
+              name="age"
+              class="form-control mdb-autocomplete"
+            />
+            <label for="form-age" class="active">
+              年齢どれくらい?(0~4の数字だけ入力)
+            </label>
+            <p>0: 小さい子</p>
+            <p>1: 10~20代</p>
+            <p>2: 30~40代</p>
+            <p>3: 50~60代</p>
+            <p>4: 年寄り</p>
+          </div>
+        </div>
+        <div class="md-form">
+          <div>
+            <input
+              type="search"
+              id="form-sex"
+              name="sex"
+              class="form-control mdb-autocomplete"
+              onkeydown="if(event.ctrlKey&&event.keyCode==13){document.getElementById('submit').click();return false};"
+            />
+            <label for="form-sex" class="active">
+              性別は?("man"か"woman"か"other"を入力)
+            </label>
+            <p>man: 男の人</p>
+            <p>woman: 女の人</p>
+            <p>other: それ以外</p>
+          </div>
+        </div>
+        <!-- Sign up button -->
+        <button
+          class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0"
+          type="submit"
+        >
+          入力!
+        </button>
+      </form>
+      <!-- Form -->
+    </div>
+  </div>
+  <!-- Material form register -->
 </div>
 
 <!-- Footer -->
@@ -49,13 +109,46 @@
 
 <!-- SCRIPTS -->
 <!-- JQuery -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+></script>
+<!-- jQuery UI -->
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"
+/>
 <!-- Bootstrap tooltips -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"
+></script>
 <!-- Bootstrap core JavaScript -->
-<script type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"
+></script>
 <!-- MDB core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/js/mdb.min.js"></script>
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/js/mdb.min.js"
+></script>
+
+<!-- form -->
+<script>
+  var sex = ["man", "woman", "other"];
+
+  $("#form-sex").autocomplete({
+    source: sex
+  });
+
+  // $("#form-sex").keydown(function(e){
+  //   if(((event.ctrlKey && !event.metaKey) || (!event.ctrlKey && e.metaKey)) && event.keyCode==13 && $(this).val()){
+  //     $("#formSubmit").submit();
+  //     return false
+  //   }
+  // })
+</script>
 
 {{ end }}
