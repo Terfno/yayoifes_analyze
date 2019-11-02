@@ -16,7 +16,7 @@ func Hello(c *gin.Context) {
 }
 
 func DBtest(c *gin.Context) {
-	loger, err := domain.GetTest()
+	loger, err := domain.GetNumberOfVisitor()
 	if err != nil {
 		log.Fatal("fail get")
 	}

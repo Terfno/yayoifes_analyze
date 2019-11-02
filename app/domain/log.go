@@ -13,10 +13,21 @@ type Log struct {
 	Timing time.Time `json:datetime`
 }
 
-func GetTest() ([]*Log, error) {
+func GetNumberOfVisitor() ([]*Log, error) {
 	var l []*Log
 
 	err := infra.Connect().Find(&l).Error
+	if err != nil {
+		return nil, err
+	}
+
+	return l, err
+}
+
+func GetNumberOfVisitorByHour(min, max int) ([]*Log, error) {
+	var l []*Log
+
+	err := infra.Connect().Find(&l, "Timing BETWEEN (? - INTERVAL ? HOUR) AND (? - INTERVAL ? HOUR)", time.Now(), max, time.Now(), min).Error
 	if err != nil {
 		return nil, err
 	}
@@ -30,6 +41,9 @@ func Read24() ([]*Log, error) {
 
 	var l []*Log
 	err := db.Find(&l, "Timing >= ? - INTERVAL 1 DAY", time.Now()).Error
+	if err != nil {
+		return nil, err
+	}
 
 	return l, err
 }

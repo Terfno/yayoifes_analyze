@@ -16,7 +16,8 @@ func main() {
 	// api
 	apiRouter := r.Group("/api")
 	{
-		apiRouter.GET("/read24",handler.Read24)
+		apiRouter.GET("/numofvisitor",handler.GetNumberOfVisitor)
+		apiRouter.GET("/novperhour",handler.GetNumberOfVisitorPerHour)
 	}
 
 	r.Run(":8080")

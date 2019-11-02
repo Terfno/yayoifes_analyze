@@ -3,3 +3,6 @@ fmt:
 	@cd handler/ && go fmt && cd ..
 	@cd infra/ && go fmt && cd ..
 	@echo "go fmt ed"
+
+run:
+	@go run server.go

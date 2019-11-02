@@ -1,24 +1,34 @@
 package handler
 
 import (
-	"encoding/json"
+	// "encoding/json"
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/Terfno/yayoifes_analyze/app/domain"
 )
 
-func Read24(c *gin.Context) {
-	log24, err := domain.Read24()
+func GetNumberOfVisitor(c *gin.Context) {
+	log24, err := domain.GetNumberOfVisitor()
 	if err != nil {
 		log.Fatal("fail get")
 	}
 
-	jsonBytes, err := json.Marshal(log24)
-	if err != nil {
-		log.Fatal("fail marshal")
+	c.String(http.StatusOK, strconv.Itoa((len(log24))))
+}
+
+func GetNumberOfVisitorPerHour(c *gin.Context) {
+	var novperhour []int
+
+	for i := 0; i < 24; i++ {
+		perhour, err := domain.GetNumberOfVisitorByHour(i, i+1)
+		if err != nil {
+			log.Fatal("fail get")
+		}
+		novperhour = append(novperhour, len(perhour))
 	}
 
-	c.String(http.StatusOK, string(jsonBytes)+"\n")
+	c.String(http.StatusOK, "%d\n", novperhour)
 }
