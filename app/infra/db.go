@@ -1,9 +1,11 @@
 package infra
 
 import (
+	// "time"
+	"log"
+
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
-	"log"
 )
 
 func Connect() *gorm.DB {
@@ -17,7 +19,14 @@ func Connect() *gorm.DB {
 
 	db, err := gorm.Open(DBMS, CONNECT)
 	if err != nil {
-		log.Fatal("DB接続に失敗")
+		// for i := 0; i < 10; i++ {
+		// 	db, err = gorm.Open(DBMS, CONNECT)
+		// 	if err == nil {
+		// 		break
+		// 	}
+		// 	time.Sleep(1 * time.Second)
+		// }
+		log.Fatal("die")
 	}
 
 	return db

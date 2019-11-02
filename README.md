@@ -1,21 +1,28 @@
 # yayoifes_analyze
 来場者アナライズ
 
-## Make
-### docker build
-Dockerfileをもとにimageを錬成するmake magic
+## start
+### database
+read Makefile.
 ```sh
-$ make build
+$ cd database
+$ make init
 ```
 
-### docker run
-make buildで錬成したコンテナでgoを実行する
+### server
 ```sh
-$ make gotest
+$ cd app
+$ chmod +x ./run.sh
+$ ./run.sh
 ```
 
-### docker images / ps -a
-めんどいのでdlsで一覧表示させる
+## stop
+### database
+readmake file.
 ```sh
-$ make dls
+$ cd database
+$ make d/down
 ```
+
+### server
+this shell script is not die. please enter `control + c` twice quickly. :fire:

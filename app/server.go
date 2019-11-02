@@ -2,8 +2,8 @@ package main
 
 import (
 	"log"
-	"path/filepath"
 	"net/http"
+	"path/filepath"
 
 	"github.com/gin-contrib/multitemplate"
 	"github.com/gin-gonic/gin"
@@ -17,7 +17,7 @@ func main() {
 
 	// ui
 	r.GET("/", handler.Graph)
-	r.GET("/reception", func(c *gin.Context){
+	r.GET("/reception", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "reception.html", gin.H{})
 	})
 
