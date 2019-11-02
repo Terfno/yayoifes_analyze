@@ -10,7 +10,9 @@ $ make init
 ```
 
 ### server
+using ngrok.
 ```sh
+$ ./ngrok http 8080
 $ cd app
 $ chmod +x ./run.sh
 $ ./run.sh
