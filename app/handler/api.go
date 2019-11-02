@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -28,7 +27,6 @@ func GetNumberOfVisitorPerHour(c *gin.Context) {
 		if err != nil {
 			log.Fatal("fail get")
 		}
-		fmt.Println("%d,%d,%d\n", perhour, i+1, i)
 		novperhour = append(novperhour, len(perhour))
 	}
 
