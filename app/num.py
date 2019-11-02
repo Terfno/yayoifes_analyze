@@ -1,2 +1,2 @@
-for i in range(1,25,1):
-  print("{{.d"+str(i)+"}},")
+for i in range(0,24,1):
+  print("novph["+str(i)+"]")

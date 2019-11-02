@@ -1,7 +1,6 @@
 package main
 
 import (
-	"net/http"
 	"path/filepath"
 	"log"
 
@@ -16,9 +15,7 @@ func main() {
 	r.HTMLRender = loadTemplates("./templates")
 
 	// ui
-	r.GET("/",func(c *gin.Context){
-		c.HTML(http.StatusOK, "index.html", gin.H{})
-	})
+	r.GET("/",handler.Graph)
 
 	// api
 	apiRouter := r.Group("/api")
