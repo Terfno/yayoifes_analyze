@@ -26,12 +26,18 @@ func GetNumberOfVisitor() ([]*Log, error) {
 
 func GetNumberOfVisitorByHour(min, max int) ([]*Log, error) {
 	var l []*Log
+	if min == 0 || max == 0 {
+		err := infra.Connect().Find(&l, "Timing >= ? - INTERVAL 1 HOUR", time.Now()).Error
+		if err != nil {
+			return nil, err
+		}
+		return l, err
+	}
 
 	err := infra.Connect().Find(&l, "Timing BETWEEN (? - INTERVAL ? HOUR) AND (? - INTERVAL ? HOUR)", time.Now(), max, time.Now(), min).Error
 	if err != nil {
 		return nil, err
 	}
-
 	return l, err
 }
 

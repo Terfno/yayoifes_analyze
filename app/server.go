@@ -1,11 +1,11 @@
 package main
 
 import (
-	"path/filepath"
 	"log"
+	"path/filepath"
 
-	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/multitemplate"
+	"github.com/gin-gonic/gin"
 
 	"github.com/Terfno/yayoifes_analyze/app/handler"
 )
@@ -15,13 +15,13 @@ func main() {
 	r.HTMLRender = loadTemplates("./templates")
 
 	// ui
-	r.GET("/",handler.Graph)
+	r.GET("/", handler.Graph)
 
 	// api
 	apiRouter := r.Group("/api")
 	{
-		apiRouter.GET("/nov",handler.GetNumberOfVisitor)
-		apiRouter.GET("/novperhour",handler.GetNumberOfVisitorPerHour)
+		apiRouter.GET("/nov", handler.GetNumberOfVisitor)
+		apiRouter.GET("/novperhour", handler.GetNumberOfVisitorPerHour)
 	}
 
 	r.Run(":8080")

@@ -1,2 +1,2 @@
 for i in range(0,24,1):
-  print("novph["+str(i)+"]")
+  print("\""+str(i)+"-"+str(i+1)+"\""+",")
