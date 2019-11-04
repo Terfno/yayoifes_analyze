@@ -76,6 +76,18 @@ func Graph(c *gin.Context) {
 	}
 	nov := strconv.Itoa(len(novi))
 
+	novyi, err := domain.Read1103()
+	if err != nil {
+		log.Fatal("fail get")
+	}
+	novy := strconv.Itoa(len(novyi))
+
+	novti, err := domain.Read1104()
+	if err != nil {
+		log.Fatal("fail get")
+	}
+	novt := strconv.Itoa(len(novti))
+
 	// per hour slice
 	var novph []int
 	for i := 0; i < 24; i++ {
@@ -95,6 +107,8 @@ func Graph(c *gin.Context) {
 
 	c.HTML(http.StatusOK, "index.html", gin.H{
 		"nov":   nov,
+		"novt":  novt,
+		"novy":  novy,
 		"datas": novph,
 		"avg":   avg,
 	})

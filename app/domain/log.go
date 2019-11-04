@@ -59,13 +59,27 @@ func GetNumberOfVisitorByHour(min, max int) ([]*Log, error) {
 	return l, err
 }
 
-func Read24() ([]*Log, error) {
+func Read1103() ([]*Log, error) {
 	var l []*Log
 
 	db := infra.Connect()
 	defer db.Close()
 
-	err := db.Find(&l, "Timing >= ? - INTERVAL 1 DAY", time.Now()).Error
+	err := db.Find(&l, "Timing between '2019-11-02 08:00:00' and '2019-11-03 08:00:00'").Error
+	if err != nil {
+		return nil, err
+	}
+
+	return l, err
+}
+
+func Read1104() ([]*Log, error) {
+	var l []*Log
+
+	db := infra.Connect()
+	defer db.Close()
+
+	err := db.Find(&l, "Timing >= '2019-11-03 08:00:00'").Error
 	if err != nil {
 		return nil, err
 	}
