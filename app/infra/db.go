@@ -19,13 +19,6 @@ func Connect() *gorm.DB {
 
 	db, err := gorm.Open(DBMS, CONNECT)
 	if err != nil {
-		// for i := 0; i < 10; i++ {
-		// 	db, err = gorm.Open(DBMS, CONNECT)
-		// 	if err == nil {
-		// 		break
-		// 	}
-		// 	time.Sleep(1 * time.Second)
-		// }
 		log.Fatal("die")
 	}
 
