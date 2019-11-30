@@ -10,49 +10,6 @@ import (
 	"github.com/Terfno/yayoifes_analyze/app/domain"
 )
 
-func GetNumberOfVisitor(c *gin.Context) {
-	log24, err := domain.GetNumberOfVisitor()
-	if err != nil {
-		log.Fatal("fail get")
-	}
-
-	c.String(http.StatusOK, "%d", len(log24))
-}
-
-func GetNumberOfVisitorPerHour(c *gin.Context) {
-	var novperhour []int
-
-	for i := 0; i < 24; i++ {
-		perhour, err := domain.GetNumberOfVisitorByHour(i, i+1)
-		if err != nil {
-			log.Fatal("fail get")
-		}
-		novperhour = append(novperhour, len(perhour))
-	}
-
-	c.String(http.StatusOK, "%d\n", novperhour)
-}
-
-func Get1103(c *gin.Context) {
-	novy, err := domain.Read1103()
-	if err != nil {
-		log.Fatal("fail get")
-	}
-	novyi := len(novy)
-
-	c.String(http.StatusOK, "%d\n", novyi)
-}
-
-func Get1104(c *gin.Context) {
-	novt, err := domain.Read1104()
-	if err != nil {
-		log.Fatal("fail get")
-	}
-	novti := len(novt)
-
-	c.String(http.StatusOK, "%d\n", novti)
-}
-
 func bytes2uint(bytes ...byte) uint64 {
 	padding := make([]byte, 8-len(bytes))
 	i := binary.BigEndian.Uint64(append(padding, bytes...))
@@ -72,6 +29,57 @@ func bytes2int(bytes ...byte) int64 {
 		i := bytes2uint(bytes...)
 		return int64(i)
 	}
+}
+
+func GetNumberOfVisitor(c *gin.Context) {
+	log24, err := domain.GetNumberOfVisitor()
+	if err != nil {
+		log.Fatal("fail get")
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"number of visitor": len(log24),
+	})
+}
+
+func GetNumberOfVisitorPerHour(c *gin.Context) {
+	var novperhour []int
+
+	for i := 0; i < 24; i++ {
+		perhour, err := domain.GetNumberOfVisitorByHour(i, i+1)
+		if err != nil {
+			log.Fatal("fail get")
+		}
+		novperhour = append(novperhour, len(perhour))
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"number of visitor per hour": novperhour,
+	})
+}
+
+func Get1103(c *gin.Context) {
+	novy, err := domain.Read1103()
+	if err != nil {
+		log.Fatal("fail get")
+	}
+	novyi := len(novy)
+
+	c.JSON(http.StatusOK, gin.H{
+		"number of visitor of 11/03": novyi,
+	})
+}
+
+func Get1104(c *gin.Context) {
+	novt, err := domain.Read1104()
+	if err != nil {
+		log.Fatal("fail get")
+	}
+	novti := len(novt)
+
+	c.JSON(http.StatusOK, gin.H{
+		"number of visitor of 11/04": novti,
+	})
 }
 
 func NewReception(c *gin.Context) {
